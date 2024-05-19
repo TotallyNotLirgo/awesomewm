@@ -18,7 +18,7 @@ local active_color_1 = {
 }
 
 local volume_icon = wibox.widget {
-    markup = "<span foreground='#a3b8ef'><b></b></span>",
+    markup = "<span foreground='#a3b8ef'><b>󰕾</b></span>",
     align = 'center',
     valign = 'center',
     font = "MesloLGS NF" .. ' 25',
@@ -85,9 +85,9 @@ local hide_volume_adjust = gears.timer {
 awesome.connect_signal("signal::volume", function(vol, muted)
     volume_bar.value = vol
     if muted or vol == 0 then
-        volume_icon.markup = "<span foreground='#a3b8ef'><b>ﳌ</b></span>"
+        volume_icon.markup = "<span foreground='#a3b8ef'><b>󰖁</b></span>"
     else
-        volume_icon.markup = "<span foreground='#a3b8ef'><b></b></span>"
+        volume_icon.markup = "<span foreground='#a3b8ef'><b>󰕾</b></span>"
     end
 
     if volume_adjust.visible then

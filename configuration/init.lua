@@ -8,10 +8,10 @@ require("configuration.autostart")
 
 -- Default Applications
 terminal = "alacritty"
-editor = "code"
+editor = "nvim"
 editor_cmd = editor
-browser = "brave"
-filemanager = "nautilus"
+browser = "firefox"
+filemanager = "thunar"
 discord = "discord"
 launcher = "rofi -show drun"
 music = terminal .. " --class music -e ncspot"

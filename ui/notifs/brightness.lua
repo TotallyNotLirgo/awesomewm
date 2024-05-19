@@ -16,7 +16,7 @@ local active_color_1 = {
 }
 
 local bright_icon = wibox.widget {
-    markup = "<span foreground='" .. beautiful.xcolor4 .. "'><b></b></span>",
+    markup = "<span foreground='" .. beautiful.xcolor4 .. "'><b></b></span>",
     align = 'center',
     valign = 'center',
     font = "MesloLGS NF" .. ' 25',

@@ -15,7 +15,7 @@ ruled.client.connect_signal("request::rules", function()
             focus = awful.client.focus.filter,
             raise = true,
             screen = awful.screen.preferred,
-            placement = awful.placement.centered  + awful.placement.no_offscreen
+            placement = awful.placement.centered  + awful.placement.no_offscreen,
         }
     }
 
@@ -68,6 +68,7 @@ ruled.client.connect_signal("request::rules", function()
                 "Arandr", "Blueman-manager", "Gpick", "Kruler", "Sxiv",
                 "Tor Browser", "Wpa_gui", "veromix", "xtightvncviewer", "Wine",
                 "CPU Simulator", "pavucontrol", "Pavucontrol", "matplotlib", "Wihotspot-gui",
+                "floater"
             },
             -- Note that the name property shown in xprop might be set slightly after creation of the client
             -- and the name shown thfloatingere might not match defined rules here.
@@ -87,7 +88,11 @@ ruled.client.connect_signal("request::rules", function()
             class = {"crx_peoigcfhkflakdcipcclkneidghaaphd"},
             name = {"csTimer"}
         },
-        properties = {floating = true, titlebars_enabled = true}
+        properties = {
+      floating = true,
+      titlebars_enabled = true,
+      ontop = true,
+    }
     }
 
     ruled.client.append_rule {
@@ -99,7 +104,6 @@ ruled.client.connect_signal("request::rules", function()
         },
         properties = {
             tiled = true,
-            
         }
     }
 

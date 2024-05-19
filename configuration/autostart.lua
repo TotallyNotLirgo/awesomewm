@@ -4,14 +4,15 @@ local awful = require("awful")
 
 -- Add apps to autostart here
 local autostart_apps = {
-    "xset -b", -- Disable bell 
+    "xset -b", -- Disable bell
+    "bash -c 'dbus-update-activation-environment DISPLAY'",
     "blueman-applet", -- Bluetooth Systray Applet
     "picom", -- Compositor
     "nm-applet --indicator", -- network manager systray applet
     "mictray", -- systray applet to cut access to mic
     "xfce4-power-manager", -- start the power manager
     "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1", -- polkit
-    -- "redshift -l 22.71792:75.8333"
+    "bash -c 'pgrep -x pasystray > /dev/null || pasystray'", -- PulseAudio systray applet
 
 }
 

@@ -35,7 +35,7 @@ theme.xcolor15 = xrdb.color15 or "#eaeaea"
 
 -- fonts
 theme.font = "Product Sans Regular"
-theme.taglist_font = "MesloLGS NF"
+theme.taglist_font = "FiraCode Nerd Font Mono"
 
 -- background
 theme.bg_normal = "#1e1f29"
@@ -62,11 +62,11 @@ theme.systray_icon_spacing = dpi(2)
 -- theme.bg_systray = nord.nord2
 
 -- gaps
-theme.useless_gap = dpi(5)
+theme.useless_gap = dpi(1)
 theme.gap_single_client = true
 
 -- borders
-theme.border_width = dpi(0)
+theme.border_width = dpi(1)
 theme.border_color_normal = "#000000"
 theme.border_color_active = dracula.comment
 theme.border_color_marked = gruvbox.red
@@ -122,8 +122,7 @@ theme.menubar_border_color = "#00000000"
 
 
 
--- theme.wallpaper = themes_path .. "default/background.png"
-theme.wallpaper = "/home/maryll/Pictures/Wallpapers/firewatch.png"
+theme.wallpaper = "/home/emilia/.local/share/backgrounds/CodeWallpaper.png"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path .. "default/layouts/fairhw.png"
@@ -148,7 +147,7 @@ theme.awesome_icon = theme_assets.awesome_icon(theme.menu_height,theme.bg_focus,
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
--- theme.icon_theme = '/usr/share/icons/Arc'
+theme.icon_theme = '/usr/share/icons/Mint-Y-Purple'
 
 -- Set different colors for urgent notifications.
 rnotification.connect_signal('request::rules', function()
