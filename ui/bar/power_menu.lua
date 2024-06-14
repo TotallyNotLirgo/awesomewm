@@ -142,8 +142,8 @@ widget = awful.widget.button({
   buttons = {
     awful.button({}, 1, function()
       popup.visible = not popup.visible
-      popup.x = awful.screen.focused().geometry.width / 2 - 200
-      popup.y = awful.screen.focused().geometry.height / 2 - 75
+      popup.x = awful.screen.focused().geometry.x + awful.screen.focused().geometry.width / 2 - 200
+      popup.y = awful.screen.focused().geometry.y + awful.screen.focused().geometry.height / 2 - 75
     end),
   },
 })

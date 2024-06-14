@@ -14,10 +14,10 @@ local image = wibox.widget {
   forced_width=100,
   widget=wibox.widget.imagebox,
 }
-local title = wibox.widget.textbox('title')
-local artist = wibox.widget.textbox('artist')
-local length = wibox.widget.textbox('length')
-local position = wibox.widget.textbox('position')
+local title = wibox.widget.textbox('---')
+local artist = wibox.widget.textbox('---')
+local length = wibox.widget.textbox('0:00')
+local position = wibox.widget.textbox('0:00')
 local ratio = wibox.widget {
   bar_shape = gears.shape.rounded_rect,
   bar_height = 3,
@@ -150,6 +150,9 @@ local popupWidget = wibox.widget {
 awesome.connect_signal(
   'signal::player',
   function(i, t, a, l, p, r)
+    if i == nil then
+      return
+    end
     image.image = i
     title.markup = "<b>" .. t .. "</b>"
     artist.markup = "<i>" .. a .. "</i>"
@@ -171,6 +174,4 @@ popupWidget:connect_signal(
     popup.visible = false
   end
 )
-popup.x = awful.screen.focused().geometry.width - 400
-popup.y = beautiful.wibar_height
 return popup

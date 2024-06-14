@@ -1,4 +1,5 @@
 local wibox = require("wibox")
+local beautiful = require("beautiful")
 local dpi = require("beautiful.xresources").apply_dpi
 local awful = require("awful")
 require("theme.colors")
@@ -30,8 +31,6 @@ local sound_widget = wibox.widget {
           widget = widget
         },
         widget = wibox.container.margin,
-        right = dpi(20),
-        left = dpi(20)
       },
       widget = wibox.container.background,
     },
@@ -58,13 +57,15 @@ sound_widget:connect_signal(
   "mouse::enter",
   function()
     music_box.visible = true
+    music_box.x = awful.screen.focused().geometry.x + awful.screen.focused().geometry.width - 400
+    music_box.y = awful.screen.focused().geometry.y + beautiful.wibar_height
   end
 )
 sound_widget:connect_signal(
   "mouse::leave",
   function()
-    local w = _G.mouse.current_wibox
-    if w.x == 0 then
+    local w = mouse.current_wibox
+    if w and w.x == 0 then
       music_box.visible = false
     end
   end
@@ -72,8 +73,8 @@ sound_widget:connect_signal(
 awesome.connect_signal(
   'signal::volume',
   function(v, m)
-    volume = v
-    muted = m
+    volume = v or 0
+    muted = m or false
     widget.markup = build_textbox()
   end
 )

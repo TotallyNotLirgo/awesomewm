@@ -5,7 +5,7 @@ local beautiful = require("beautiful")
 local naughty = require("naughty")
 local ruled = require("ruled")
 local menubar = require("menubar")
-menubar.match_empty = false
+menubar.match_empty = true
 menubar.show_categories = false
 local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.autofocus")
@@ -27,6 +27,7 @@ awful.mouse.append_global_mousebindings({
 awful.keyboard.append_global_keybindings({
   awful.key({ modkey }, "x", function() exit_screen_show() end, {description = "Show logout screen", group = "custom"}),
   awful.key({modkey}, "o", function() screen.primary.right_panel:toggle() end, {description = 'toggle notification center',group = 'Awesome'}),
+  awful.key({modkey}, "z", function() awful.spawn("gpick -p") end, {description = 'Pick a color',group = 'XF86'}),
 
   awful.key({}, 'XF86AudioRaiseVolume', function() awful.spawn("pamixer -i 5") end, {description = 'volume up', group = 'XF86'}),
   awful.key({}, 'XF86AudioLowerVolume', function() awful.spawn("pamixer -d 5") end, {description = 'volume down', group = 'XF86'}),
@@ -105,16 +106,6 @@ awful.keyboard.append_global_keybindings({
       if tag then tag:view_only() end
     end},
   awful.key {
-    modifiers = {modkey, altkey},
-    keygroup = "numrow",
-    description = "toggle tag",
-    group = "tag",
-    on_press = function(index)
-      local screen = awful.screen.focused()
-      local tag = screen.tags[index]
-      if tag then awful.tag.viewtoggle(tag) end
-    end},
-  awful.key {
     modifiers = {modkey, "Shift"},
     keygroup = "numrow",
     description = "move focused client to tag",
@@ -122,7 +113,10 @@ awful.keyboard.append_global_keybindings({
     on_press = function(index)
       if client.focus then
         local tag = client.focus.screen.tags[index]
-        if tag then client.focus:move_to_tag(tag) end
+        if tag then
+          client.focus:move_to_tag(tag)
+          awful.tag.viewonly(tag)
+        end
       end
     end},
   awful.key {
@@ -136,20 +130,6 @@ awful.keyboard.append_global_keybindings({
         if tag then client.focus:toggle_tag(tag) end
       end
     end},
-  awful.key {
-    modifiers = {modkey, "Control"},
-    keygroup = "numrow",
-    description = "toggle minimization of clients",
-    group = "layout",
-    on_press = function(index)
-      local num_clients = #awful.screen.focused().selected_tag:clients()
-      if index > num_clients then
-        return
-      end
-      local i = num_clients - index + 1
-      local client = awful.screen.focused().selected_tag:clients()[i]
-      client:activate{context = "tasklist", action = "toggle_minimization"}
-    end}
 })
 
 -- Default mousebindings

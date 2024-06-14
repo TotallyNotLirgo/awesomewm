@@ -26,7 +26,6 @@ awful.spawn.with_shell("setxkbmap pl")
 -- require('notifications')
 
 -- Initializing widgets
-local battery_widget = require("ui.bar.battery-widget")
 local mytextclock = require("ui.bar.textclock")
 local systray = require("ui.bar.systray")
 local mytasklist = require("ui.bar.tasklist")
@@ -94,45 +93,45 @@ end)
 
 
 -- Bling
-local bling = require "modules.bling"
-
-bling.widget.tag_preview.enable {
-  show_client_content = true,  -- Whether or not to show the client content
-  x = 10,                       -- The x-coord of the popup
-  y = 10,                       -- The y-coord of the popup
-  scale = 0.1,                 -- The scale of the previews compared to the screen
-  honor_padding = true,        -- Honor padding when creating widget size
-  honor_workarea = true,       -- Honor work area when creating widget size
-  placement_fn = function(c)    -- Place the widget using awful.placement (this overrides x & y)
-    awful.placement.top_left(c, {
-      margins = {
-        top = 40,
-        left = 30
-      }
-    })
-  end,
-  background_widget = wibox.widget {    -- Set a background image (like a wallpaper) for the widget
-    image = beautiful.wallpaper,
-    horizontal_fit_policy = "fit",
-    vertical_fit_policy   = "fit",
-    widget = wibox.widget.imagebox
-  }
-}
-
-bling.widget.window_switcher.enable {
-  type = "thumbnail", -- set to anything other than "thumbnail" to disable client previews
-
-  -- keybindings (the examples provided are also the default if kept unset)
-  hide_window_switcher_key = "Escape", -- The key on which to close the popup
-  minimize_key = "n",                  -- The key on which to minimize the selected client
-  unminimize_key = "N",                -- The key on which to unminimize all clients
-  kill_client_key = "q",               -- The key on which to close the selected client
-  cycle_key = "Tab",                   -- The key on which to cycle through all clients
-  previous_key = "Left",               -- The key on which to select the previous client
-  next_key = "Right",                  -- The key on which to select the next client
-  vim_previous_key = "h",              -- Alternative key on which to select the previous client
-  vim_next_key = "l",                  -- Alternative key on which to select the next client
-}
+-- local bling = require "modules.bling"
+--
+-- bling.widget.tag_preview.enable {
+--   show_client_content = true,  -- Whether or not to show the client content
+--   x = 10,                       -- The x-coord of the popup
+--   y = 10,                       -- The y-coord of the popup
+--   scale = 0.1,                 -- The scale of the previews compared to the screen
+--   honor_padding = true,        -- Honor padding when creating widget size
+--   honor_workarea = true,       -- Honor work area when creating widget size
+--   placement_fn = function(c)    -- Place the widget using awful.placement (this overrides x & y)
+--     awful.placement.top_left(c, {
+--       margins = {
+--         top = 40,
+--         left = 30
+--       }
+--     })
+--   end,
+--   background_widget = wibox.widget {    -- Set a background image (like a wallpaper) for the widget
+--     image = beautiful.wallpaper,
+--     horizontal_fit_policy = "fit",
+--     vertical_fit_policy   = "fit",
+--     widget = wibox.widget.imagebox
+--   }
+-- }
+--
+-- bling.widget.window_switcher.enable {
+--   type = "thumbnail", -- set to anything other than "thumbnail" to disable client previews
+--
+--   -- keybindings (the examples provided are also the default if kept unset)
+--   hide_window_switcher_key = "Escape", -- The key on which to close the popup
+--   minimize_key = "n",                  -- The key on which to minimize the selected client
+--   unminimize_key = "N",                -- The key on which to unminimize all clients
+--   kill_client_key = "q",               -- The key on which to close the selected client
+--   cycle_key = "Tab",                   -- The key on which to cycle through all clients
+--   previous_key = "Left",               -- The key on which to select the previous client
+--   next_key = "Right",                  -- The key on which to select the next client
+--   vim_previous_key = "h",              -- Alternative key on which to select the previous client
+--   vim_next_key = "l",                  -- Alternative key on which to select the next client
+-- }
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
@@ -280,32 +279,7 @@ screen.connect_signal("request::desktop_decoration", function(s)
   -- Create the wibox
   s.mywibox = awful.wibar({position="top", screen = s, height = beautiful.wibar_height})
 
-  s.mypanel = wibox({
-    screen = s,
-    type = "dock",
-    ontop = true,
-    x = 400,
-    y = 0,
-    width = 400,
-    height = screen_height,
-    visible = false
-  })
-
   s.mypromptbox = awful.widget.prompt()
-
-  -- Add widgets to the wibox
-  textclock = awful.popup {
-    ontop = true,
-    visible = true,
-    shape = gears.shape.rounded_rect,
-    widget = {
-      widget=mytextclock,
-      forced_height = 30,
-      forced_width = 250,
-    }
-  }
-  textclock.x = screen_width / 2 - 125
-  textclock.y = 2.5
   s.mywibox.widget = {
     layout = wibox.layout.align.horizontal,
     { -- Left widgets
@@ -326,23 +300,13 @@ screen.connect_signal("request::desktop_decoration", function(s)
     },
     { -- Right widgets
       layout = wibox.layout.fixed.horizontal,
-      spacing = -16,
-      wibox.widget{ -- Battery widget
-        {
-          battery_widget(),
-          widget = wibox.container.margin,
-          left = dpi(10),
-          right = dpi(15),
-        },
-        widget = wibox.container.background,
-        -- bg = nord.nord1,
-        shape = function(cr, width, height)
-          gears.shape.powerline(cr, width, height, -15)
-        end,
-      },
+      require("ui.bar.network"),
       require("ui.bar.compstats"),
       require("ui.bar.sound_control"),
       systray,
+      mytextclock,
+      require("ui.bar.battery"),
+      require("ui.bar.display"),
     }
   }
 

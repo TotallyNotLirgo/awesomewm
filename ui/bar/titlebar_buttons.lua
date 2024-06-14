@@ -18,6 +18,7 @@ local function sticky_button(c)
           end,
           function ()
             c.sticky = not c.sticky
+            c.ontop = c.sticky
           end
         ),
         widget = wibox.container.margin,

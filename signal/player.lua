@@ -12,7 +12,9 @@ local ram_script = [[
 local filename = ""
 awful.widget.watch(ram_script, update_interval, function(widget, stdout)
   image = stdout:match('(.*)\t.*\t.*\t.*\t.*\t')
-  local changed = false
+  if image == nil then
+    return
+  end
   if image ~= previous_image then
     image_index = image_index + 1
     filename = "/tmp/cover" .. tostring(image_index) .. ".jpg"

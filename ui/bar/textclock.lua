@@ -4,6 +4,7 @@ require("theme.colors")
 local gears = require("gears")
 clickable_container = require("modules.clickable-container")
 local cal = require("ui.bar.calendar")
+local awful = require("awful")
 -- local markup = require("markup")
 
 -- Create a textclock widget
@@ -11,12 +12,11 @@ mytextclock = wibox.widget {
   {
     {
       {
-        widget = wibox.widget.textclock('<span font="Product Sans Bold 12">%a %b %d, %I:%M %p </span>', 1),
+        widget = wibox.widget.textclock('<span font="FiraCode Nerd Font Mono Bold 12">%H:%M:%S</span>', 1),
         align = "center",
       },
       widget = wibox.container.margin,
-      left = dpi(20),
-      right = dpi(15),
+      right = dpi(10),
     },
     widget = clickable_container
   },
@@ -25,7 +25,7 @@ mytextclock = wibox.widget {
 }
 
 mytextclock:connect_signal("button::press", function(_, _, _, button)
-  if button == 1 then cal_toggle() end
+  if button == 1 then cal_toggle(awful.screen.focused()) end
 end)
 
 return mytextclock

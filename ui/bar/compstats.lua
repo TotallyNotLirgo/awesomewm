@@ -18,7 +18,7 @@ local function wrap_icon(icon)
 end
 
 local function build_textbox()
-  return wrap_icon("󰄨") .. ram .. "GB  " .. wrap_icon("󰍛") .. cpu .. "%  " .. wrap_icon("") .. disk .. "GB  " .. wrap_icon("󰈸") .. temp .. "°C"
+  return wrap_icon(" 󰄨") .. ram .. "GB " .. wrap_icon("󰍛") .. cpu .. "% " .. wrap_icon("") .. disk .. "GB " -- .. "  " .. wrap_icon("󰈸") .. temp .. "°C"
 end
 
 local mycompstats = wibox.widget {
@@ -29,8 +29,7 @@ local mycompstats = wibox.widget {
           widget = widget
         },
         widget = wibox.container.margin,
-        right = dpi(20),
-        left = dpi(20)
+        right = dpi(10),
       },
       widget = wibox.container.background,
     },
