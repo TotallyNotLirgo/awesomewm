@@ -47,7 +47,7 @@ awful.keyboard.append_global_keybindings({
   awful.key({modkey}, "Return", function()
     local index = awful.screen.focused().selected_tag.index
     if index == 1 then
-      awful.spawn("firefox")
+      awful.spawn("brave")
     elseif index == 2 then
       awful.spawn(terminal)
     elseif index == 3 then

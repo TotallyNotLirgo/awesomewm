@@ -10,7 +10,7 @@ require("configuration.autostart")
 terminal = "alacritty"
 editor = "nvim"
 editor_cmd = editor
-browser = "firefox"
+browser = "brave"
 filemanager = "thunar"
 discord = "discord"
 launcher = "rofi -show drun"

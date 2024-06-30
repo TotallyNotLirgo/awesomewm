@@ -61,7 +61,7 @@ ruled.client.connect_signal("request::rules", function()
     id = "floating",
     rule_any = {
       instance = {
-        "copyq", 
+        "copyq",
         "pinentry"
       },
       class = {
@@ -75,7 +75,8 @@ ruled.client.connect_signal("request::rules", function()
       name = {
         "Event Tester", -- xev.
         "Volume Control",
-        "PlayOnLinux"
+        "PlayOnLinux",
+        "Friends List"
         -- "Picture in picture"
       },
       role = {
