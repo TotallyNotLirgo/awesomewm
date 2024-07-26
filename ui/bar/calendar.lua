@@ -121,4 +121,4 @@ function cal_toggle(screen)
   calendar.y = screen.geometry.y + beautiful.wibar_height + beautiful.useless_gap*2
 end
 
-return cal
+return cal_toggle

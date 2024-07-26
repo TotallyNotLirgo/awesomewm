@@ -158,11 +158,13 @@ client.connect_signal("request::default_keybindings", function()
     awful.key({modkey}, "s",
       function(c)
         awful.client.floating.toggle(c)
+        local x = awful.screen.focused().geometry.x
+        local y = awful.screen.focused().geometry.y
         local sw = awful.screen.focused().geometry.width
         local sh = awful.screen.focused().geometry.height
         c:geometry({
-          x = sw / 7,
-          y = sh / 7,
+          x = x + sw / 7,
+          y = y + sh / 7,
           width = sw / 1.4,
           height = sh / 1.4
         })

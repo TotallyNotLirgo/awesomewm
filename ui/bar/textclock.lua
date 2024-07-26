@@ -3,7 +3,7 @@ local dpi = require("beautiful.xresources").apply_dpi
 require("theme.colors")
 local gears = require("gears")
 clickable_container = require("modules.clickable-container")
-local cal = require("ui.bar.calendar")
+local cal_toggle = require("ui.bar.calendar")
 local awful = require("awful")
 -- local markup = require("markup")
 
